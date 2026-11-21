@@ -1,0 +1,116 @@
+# Programa principal (MYS22) traducido. «N texto» sustituye o crea la línea N; «N» solo la borra.
+# Carga una sola vez los 3 binarios de la cinta en RAM (EE00h, F000h, F050h) en vez de BLOAD ...,R a direcciones de VRAM.
+70 IF PEEK(&HF13F)<>77 THEN BLOAD"CAS:DATA",&HD200:BLOAD"CAS:MYSSP0",&HB1A0:BLOAD"CAS:MYSSP1",&HB1B0:POKE&HF13F,77
+80 CLEAR300:TIME=0:SC=1:DEFUSR1=&HF120:DEFUSR2=&HF12C
+85 VE$="/subup./bajdow/cogtak/tomtak/cojtak/abrope/usause/bussea/regsea/mirloo/leeloo/enclig/tietim/guasav/ayuhel/finend/desunl/empmov"
+86 OB$="/puedoo/armrac/estrac/alarac/cajsaf/velcan/cermat/fosmat/marham/piqpic/cuapic/mestab/esclad/jarvas/flovas/chifir/hogfir/silcha/llakey/notmem/papmem"
+120 SCREEN1:CLS:LOCATE4,9:PRINT"¿Seguir una partida?"
+130 LOCATE5,11:PRINT"Desde el principio...1"
+140 LOCATE5,13:PRINT"Partida guardada.....2"
+150 LOCATE2,15:PRINT"¡Pulsa la tecla 1 o la 2!"
+200 CLS:LOCATE3,5:PRINT"¿Está preparada la cinta":LOCATE3,7:PRINT"con la partida guardada?"
+210 LOCATE1,10:PRINT"Si lo está, pulsa la Z."
+230 IF ST$<>"z" AND ST$<>"Z" THEN270
+330 KEY OFF:PRINT:PRINT"¿Qué haces? ";
+425 IF AD$>="A" AND AD$<="Z" THEN AD$=CHR$(ASC(AD$)+32)
+450 AV$=LEFT$(AV$,3):P=INSTR(VE$,"/"+AV$):IF P>0 AND LEN(AV$)=3 THEN AV$=MID$(VE$,P+4,3):IF AV$="up." THEN AV$="up"
+480 IFAV$="up"THENPRINT:PRINT:PRINT" ¿Qué haces? ";:GOTO1500
+500 IFAV$="dow"THENPRINT:PRINT:PRINT" ¿Qué haces? ";:GOTO 1470
+520 PRINT:PRINT" ¿Qué? ";:PN$=""
+575 IF PD$>="A" AND PD$<="Z" THEN PD$=CHR$(ASC(PD$)+32)
+600 PN$=LEFT$(PN$,3):P=INSTR(OB$,"/"+PN$):IF P>0 AND LEN(PN$)=3 THEN PN$=MID$(OB$,P+4,3)
+1240 PRINT:PRINT"  ¡Aquí no hay nada!":GOTO 330
+1360 IFSC=33ANDRH=1ANDHA=0ANDPN$="ham"THEN PRINT:PRINT" ¡Con el martillo no puedes!":GOTO330
+1420 IFS1=SCANDK1>0THENPRINT:PRINT" ¡No tienes la llave!":GOTO330
+1430 IFS2=SCANDK2>0THENPRINT:PRINT" ¡No tienes la llave!":GOTO330
+1440 IFS1=SCANDK1>0ANDK2=0THENPRINT:PRINT" No es esta llave.":GOTO330
+1450 IFS2=SCANDK1=0ANDK2>0THENPRINT:PRINT" No es esta llave.":GOTO330
+3040 CLS:LOCATE5,0:PRINT"Lista de órdenes"
+3050 PRINT"Si pregunta ¿Qué haces?:"
+3060 PRINT:PRINT"  subir..............(up)"
+3070 PRINT:PRINT"  bajar..............(down)"
+3080 PRINT:PRINT"  coger..............(take)"
+3090 PRINT:PRINT"  abrir..............(open)"
+3100 PRINT:PRINT"  usar...............(use)"
+3110 PRINT:PRINT"  mover..............(move)"
+3120 PRINT"  buscar............(search)"
+3130 PRINT:PRINT"  tiempo de juego....(time)"
+3140 PRINT:PRINT"  guardar partida....(save)"
+3150 PRINT:PRINT"  y otras..."
+3160 PRINT:PRINT"        Pulsa una tecla."
+3180 CLS:LOCATE0,0:PRINT" Si pregunta ¿Qué?:"
+3190 PRINT:PRINT"  puerta.............(door)"
+3200 PRINT:PRINT"  armario............(rack)"
+3210 PRINT:PRINT"  caja fuerte........(safe)"
+3220 PRINT:PRINT"  vela..............(candle)"
+3230 PRINT:PRINT"  cuadro...........(picture)"
+3240 PRINT:PRINT"  mesa...............(table)"
+3250 PRINT:PRINT"  escalera..........(ladder)"
+3260 PRINT:PRINT"  jarrón.............(vase)"
+3270 PRINT:PRINT"  chimenea...(fireplace)"
+3280 PRINT"  y otras..."
+3290 PRINT:PRINT"      Pulsa una tecla."
+3320 PRINT:PLAY"o5l16gfedc":PRINT" ¡No puedes!"
+3570 SCREEN2,2,2:GOSUB5730:GOSUB4650:GOSUB4810:PSET(16,48):PRINT#1,"¡Hay un cuarto tras la pared!":GOSUB 7970
+3610 SCREEN1:CLS:LOCATE7,7:PRINT"♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥"
+3620 LOCATE7,8:PRINT"♥    N O T A    ♥"
+3630 LOCATE7,9:PRINT"♥               ♥"
+3640 LOCATE7,10:PRINT"♥ ¿Tienes pico? ♥"
+3650 LOCATE7,11:PRINT"♥               ♥"
+3660  LOCATE7,12:PRINT"♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥"
+3670 LOCATE6,14:PRINT"Pulsa una tecla."
+3730 PRINT:PRINT" Está cerrada con llave.":GOTO330
+3990 LINE(60,175)-(180,190),8,BF:PSET(50,180),5:PRINT#1,"  ¡Pulsa tecla!";CHR$(30):RETURN
+4510 LINE(115, 65)-(150,90),8 ,BF:LINE(119,67)-(146,88),14,BF:COLOR12,0:PSET(130,73),14:PRINT#1,"▣":COLOR1,0:RETURN
+4520 LINE(160, 65)-(195,90),8 ,BF:LINE(162,67)-(193,88),14,BF:COLOR12,0:PSET(175,73),14:PRINT#1,"▣":COLOR1,0:RETURN
+4610 LINE(125,110)-(130,105),1:PSET(112,80),4:PRINT#1,"P B":RETURN
+4800 PSET(36,36):PRINT#1,"¡Hay una entrada al sótano!":GOSUB7970:RETURN
+4870 LINE(130,72)-(132,74),1,BF:PSET(48,32):PRINT#1,"¡Hay una caja fuerte!":GOSUB7950:RETURN
+4890 LINE(130,72)-(132,74),1,BF:PSET(48,32):PRINT#1,"¡Hay una caja fuerte!":GOSUB7950:RETURN
+4940 PSET(48,32):PRINT#1,"¡Hay una caja fuerte!":GOSUB7950:RETURN
+5020 PSET(12,32):PRINT#1,"¡Hay un cuarto tras la pared!":GOSUB7970:RETURN
+5950 GOSUB3900:COLOR0,1:CLS:PSET(24,36):PRINT#1,"¡Está oscuro, no ves nada!"
+6000 PSET(72,36):PRINT#1,"¡Hay una vela!":GOSUB7950
+6040 LINE(100,85)-(165,120),1,B:PSET(101,102):PRINT#1,"CERILLAS"
+6050 PSET(72,32):PRINT#1,"¡Hay cerillas!":GOSUB7950:GOSUB3990:GOTO 3550
+6080 PSET(48,32):PRINT#1,"¡Hay una caja fuerte!":GOSUB7950:GOSUB3990:GOTO 3550
+6110 PSET(72,32):PRINT#1,"¡Hay una llave!":GOSUB7950:GOSUB3990:GOTO3550
+6140 PSET(64,32):PRINT#1,"¡Hay un martillo!":GOSUB7950:GOSUB3990:GOTO 3550
+6180 PSET(72,32):PRINT#1,"¡Hay un pico!":GOSUB7950:GOSUB3990:GOTO 3550
+6190 SCREEN2,2,2:PSET(64,32):PRINT#1,"¡Hay una nota!":LINE(100, 90)-(180,140),15,BF:GOSUB7950:GOSUB3990:GOTO 3550
+6270 PSET(36,24):PRINT#1,"¡Aquí está el diamante!":GOSUB7980
+6300 GOSUB6420:PRINT"   Te caes del balcón"
+6310 PRINT"   y mueres......"
+6330 LOCATE 6,16:PRINT"PULSA UNA TECLA":GOSUB7960:FORI=0TO3000:NEXT
+6360 GOSUB6420:PRINT"   Te das con la cabeza en"
+6370 PRINT"   el armario y mueres......"
+6390 GOSUB6420:PRINT"   Sales a la calle, te":PRINT"   atropella un coche"
+6400 PRINT"   y mueres......"
+6490 PSET(28,60),1:PRINT#1,"¡Te has hecho millonario!"
+6500 PSET(15,155),1:PRINT#1,"Producción....":PSET(20,170),1:PRINT#1,"líder mundial en aventuras":PSET(70,180),1:COLOR8:PRINT#1," MICRO CABIN "
+6550 IQ=&HEE00
+6620 IQ=&HEF00
+6650 LINE(PEEK(IQ)+L,PEEK(IQ+1)+M)-(PEEK(IQ+2)+L,PEEK(IQ+3)+M),PEEK(IQ+4)
+6670 IQ=&HEF80
+6700 LINE(PEEK(IQ)+L,PEEK(IQ+1)+M)-(PEEK(IQ+2)+L,PEEK(IQ+3)+M),PEEK(IQ+4)
+6800 CIRCLE(40+L,33+M),3,15:Q=USR1(0)
+7070 PSET(35,24):PRINT#1,"Un fantasma"
+7080 PSET(30,52):PRINT#1,"te maldice"
+7090 PSET(45,88):PRINT#1,"y mueres."
+7230 SCREEN1:CLS:LOCATE 3,  8:PRINT"¿Guardo ahora la partida"
+7240 LOCATE 3,10:PRINT"en la cinta?"
+7250 LOCATE3,12:PRINT"Si es así, pulsa Z.":LOCATE3,14:PRINT"Si no, pulsa otra tecla."
+7280 IF XZ$<>"z" AND XZ$<>"Z" THEN 310
+7290 CLS:LOCATE 2,10:PRINT"¿Está preparada la cinta?":LOCATE1,12:PRINT"Si lo está, pulsa una tecla"
+7360 PRINT:PRINT:PRINT"¡Hasta la próxima!.....END":END
+7370 F=60:IF PEEK(&H2B)AND128 THEN F=50
+7375 HH=INT(TIME/F/3600):MM=INT(TIME/F/60)-HH*60:SS=INT(TIME/F)-INT(TIME/F/60)*60
+7380 SCREEN1:CLS:LOCATE5,5:PRINT"Llevas jugando":LOCATE10,7:PRINT HH;":";MM;":";SS
+7390 LOCATE 7,18:PRINT"Pulsa una tecla."
+7435 Q=USR2(0)
+7510 REM
+7890 SCREEN2,2:COLOR15,5,5:CLS:PSET(68,40),15:PRINT#1,"¡Prueba también":PSET(56,70),5:PRINT#1,"DIAMOND ADVENTURE!"
+7900  PSET(60,100),5:PRINT#1,"♥♥♥♥♥♥♥♥♥♥♥♥♥"
+7910 PSET(60,110),5:PRINT#1,"♥PULSA TECLA♥"
+7920  PSET(60,120),5:PRINT#1,"♥♥♥♥♥♥♥♥♥♥♥♥♥"
+6590 LINE(PEEK(IQ)+L,PEEK(IQ+1)+M)-(PEEK(IQ+2)+L,PEEK(IQ+3)+M),PEEK(IQ+4)

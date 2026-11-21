@@ -1,0 +1,8 @@
+*.cas
+*.CAS
+*.rom
+*.ROM
+*.tsx
+*.wav
+out/
+__pycache__/
